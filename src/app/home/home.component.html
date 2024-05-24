@@ -1,0 +1,57 @@
+<section class="todoapp">
+  <header class="header">
+    <div class="container">
+      <h1>My Day</h1>
+      <p>All my tasks in one place</p>
+      <input
+        class="new-todo"
+        placeholder="Type new todo"
+        autofocus
+        type="text"
+        [formControl]="newTaskCtrl"
+        (keydown.enter)="changeHandler()"
+      />
+    </div>
+  </header>
+  <div class="container todoapp-wrapper" *ngIf="tasks().length > 0">
+    <section class="main">
+      <ul class="todo-list">
+        <li
+          (dblclick)="updateTaskEditingMode(i)"
+          *ngFor="let task of tasksByFilter(); index as i"
+          [class.editing]="task.editing"
+          [class.completed]="task.completed">
+          <div class="view">
+            <input class="toggle"
+            type="checkbox"
+            [checked]="task.completed"
+            (change)="updateTask(i)" />
+            <label>{{ task.title }}</label>
+            <button class="destroy" (click)="deleteTask(i)"></button>
+          </div>
+          <input class="edit" (keydown.enter)="updateTaskText(i, $event)" value={{task.title}} />
+        </li>
+      </ul>
+    </section>
+    <footer class="footer" *ngIf="tasks().length > 0">
+      <span class="todo-count">
+        <strong>{{ tasksByFilter().length }}</strong>
+        {{ tasksByFilter().length === 1 ? 'item' : 'items' }} left
+      </span>
+      <!-- Remove this if you don't implement routing -->
+      <ul class="filters">
+        <li>
+          <a (click)="changeFilter('all')" [class.selected]="filter() === 'all'">All</a>
+        </li>
+        <li>
+          <a (click)="changeFilter('pending')" [class.selected]="filter() === 'pending'">Pending</a>
+        </li>
+        <li>
+          <a (click)="changeFilter('completed')" [class.selected]="filter() === 'completed'">Completed</a>
+        </li>
+      </ul>
+      <!-- Hidden if no completed items are left ↓ -->
+      <button class="clear-completed" (click)="deleteCompletedTasks(tasks())">Clear completed</button>
+    </footer>
+  </div>
+</section>
