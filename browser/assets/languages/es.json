@@ -1,0 +1,9 @@
+{
+  "title": "Mi día",
+  "slogan": "Todas mis tareas en un solo lugar",
+  "typeTask": "Agrega una nueva tarea",
+  "all": "Todas",
+  "pending": "Pendientes",
+  "completed": "Completadas",
+  "clear": "Limpiar completadas"
+ }

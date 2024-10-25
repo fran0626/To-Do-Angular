@@ -1,0 +1,9 @@
+{
+  "title": "My day",
+  "slogan": "All my tasks in one place",
+  "typeTask": "Type new todo",
+  "all": "All",
+  "pending": "Pending",
+  "completed": "Completed",
+  "clear": "Clear completed"
+ }
