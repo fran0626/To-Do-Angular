@@ -1,19 +1,25 @@
 import { Component, signal, computed, effect, inject, Injector } from '@angular/core';
-
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TaskModel } from '../models/task.model';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule, TranslateModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
 
 export class HomeComponent {
 
+  constructor(
+    private translate: TranslateService
+  ){}
+
   tasks = signal<TaskModel[]>([]);
+  currentLang = this.translate.currentLang;
 
   nextId: number = this.tasks().length + 1;
 
@@ -144,5 +150,10 @@ export class HomeComponent {
   deleteCompletedTasks(tasks: TaskModel[]) {
     this.tasks.update((tasks) =>
       tasks.filter((task) =>!task.completed));
+  }
+
+  changeLanguage() {
+    this.currentLang = this.currentLang === 'es' ? 'en' : 'es';
+    this.translate.use(this.currentLang);
   }
 }

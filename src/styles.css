@@ -32,3 +32,15 @@ body {
 :focus {
   outline: 0;
 }
+
+.language-toggle-button {
+  padding: 5px 10px;
+  color: white;
+  border: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+}
+
+

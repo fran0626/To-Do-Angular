@@ -1,60 +1,64 @@
 <section class="todoapp">
-  <header class="header">
-    <div class="container">
-      <h1>My Day</h1>
-      <p>All my tasks in one place</p>
-      <input
-        class="new-todo"
-        placeholder="Type new todo"
-        autofocus
-        type="text"
-        [formControl]="newTaskCtrl"
-        (keydown.enter)="changeHandler()"
-        />
-      </div>
-    </header>
-    @if (tasks().length > 0) {
-      <div class="container todoapp-wrapper">
-        <section class="main">
-          <ul class="todo-list">
-            @for (task of tasksByFilter(); track task; let i = $index) {
-              <li
-                (dblclick)="updateTaskEditingMode(i)"
-                [class.editing]="task.editing"
-                [class.completed]="task.completed">
-                <div class="view">
-                  <input class="toggle"
-                    type="checkbox"
-                    [checked]="task.completed"
-                    (change)="updateTask(i)" />
-                    <label>{{ task.title }}</label>
-                    <button class="destroy" (click)="deleteTask(i)"></button>
-                  </div>
-                  <input class="edit" (keydown.enter)="updateTaskText(i, $event)" value={{task.title}} />
-                </li>
-              }
-            </ul>
-          </section>
-          @if (tasks().length > 0) {
-            <footer class="footer">
-              <span class="todo-count">
-                <strong>{{ tasksByFilter().length }}</strong>
-                {{ tasksByFilter().length === 1 ? 'item' : 'items' }} left
-              </span>
-              <ul class="filters">
-                <li>
-                  <a (click)="changeFilter('all')" [class.selected]="filter() === 'all'">All</a>
-                </li>
-                <li>
-                  <a (click)="changeFilter('pending')" [class.selected]="filter() === 'pending'">Pending</a>
-                </li>
-                <li>
-                  <a (click)="changeFilter('completed')" [class.selected]="filter() === 'completed'">Completed</a>
-                </li>
-              </ul>
-              <button class="clear-completed" (click)="deleteCompletedTasks(tasks())">Clear completed</button>
-            </footer>
+<header class="header">
+<div class="container">
+  <h1>{{ 'title' | translate }}</h1>
+  <p>{{ 'slogan' | translate }}</p>
+  <input
+    class="new-todo"
+    placeholder="{{ 'typeTask' | translate }}"
+    autofocus
+    type="text"
+    [formControl]="newTaskCtrl"
+    (keydown.enter)="changeHandler()"
+    />
+  </div>
+</header>
+@if (tasks().length > 0) {
+  <div class="container todoapp-wrapper">
+    <section class="main">
+      <ul class="todo-list">
+        @for (task of tasksByFilter(); track task; let i = $index) {
+          <li
+            (dblclick)="updateTaskEditingMode(i)"
+            [class.editing]="task.editing"
+            [class.completed]="task.completed">
+            <div class="view">
+              <input class="toggle"
+                type="checkbox"
+                [checked]="task.completed"
+                (change)="updateTask(i)" />
+                <label>{{ task.title }}</label>
+                <button class="destroy" (click)="deleteTask(i)"></button>
+              </div>
+              <input class="edit" (keydown.enter)="updateTaskText(i, $event)" value={{task.title}} />
+            </li>
           }
-        </div>
+        </ul>
+      </section>
+      @if (tasks().length > 0) {
+        <footer class="footer">
+          <span class="todo-count">
+            <strong>{{ tasksByFilter().length }}</strong>
+            {{ tasksByFilter().length === 1 ? 'item' : 'items' }} left
+          </span>
+          <ul class="filters">
+            <li>
+              <a (click)="changeFilter('all')" [class.selected]="filter() === 'all'">{{ 'all' | translate }}</a>
+            </li>
+            <li>
+              <a (click)="changeFilter('pending')" [class.selected]="filter() === 'pending'">{{ 'pending' | translate }}</a>
+            </li>
+            <li>
+              <a (click)="changeFilter('completed')" [class.selected]="filter() === 'completed'">{{ 'completed' | translate }}</a>
+            </li>
+          </ul>
+          <button class="clear-completed" (click)="deleteCompletedTasks(tasks())">{{ 'clear' | translate }}</button>
+        </footer>
       }
-    </section>
+    </div>
+  }
+  <button (click)="changeLanguage()" class="language-toggle-button">
+    {{ currentLang === 'es' ? 'Translate to English' : 'Traducir a Español' }}
+  </button>
+</section>
+
