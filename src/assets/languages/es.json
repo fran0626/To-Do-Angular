@@ -5,5 +5,8 @@
   "all": "Todas",
   "pending": "Pendientes",
   "completed": "Completadas",
-  "clear": "Limpiar completadas"
+  "clear": "Limpiar completadas",
+
+  "hello": "Hola Mundo",
+  "example": "Este es un ejemplo del funcionamiento del traductor"
  }

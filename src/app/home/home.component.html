@@ -1,8 +1,4 @@
-<section class="todoapp">
-<header class="header">
 <div class="container">
-  <h1>{{ 'title' | translate }}</h1>
-  <p>{{ 'slogan' | translate }}</p>
   <input
     class="new-todo"
     placeholder="{{ 'typeTask' | translate }}"
@@ -10,9 +6,8 @@
     type="text"
     [formControl]="newTaskCtrl"
     (keydown.enter)="changeHandler()"
-    />
-  </div>
-</header>
+  />
+</div>
 @if (tasks().length > 0) {
   <div class="container todoapp-wrapper">
     <section class="main">
@@ -57,8 +52,4 @@
       }
     </div>
   }
-  <button (click)="changeLanguage()" class="language-toggle-button">
-    {{ currentLang === 'es' ? 'Translate to English' : 'Traducir a Español' }}
-  </button>
-</section>
 
