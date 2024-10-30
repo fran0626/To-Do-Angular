@@ -1,0 +1,9 @@
+<header class="header">
+  <div class="container">
+    <h1>{{ 'title' | translate }}</h1>
+    <p>{{ 'slogan' | translate }}</p>
+    <button (click)="changeLanguage()" class="language-toggle-button">
+      {{ currentLang === 'es' ? 'Translate to English' : 'Traducir a Español' }}
+    </button>
+  </div>
+</header>
