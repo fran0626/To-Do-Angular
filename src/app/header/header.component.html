@@ -2,21 +2,6 @@
   <div class="container">
     <h1>{{ 'title' | translate }}</h1>
     <p>{{ 'slogan' | translate }}</p>
-
-    <!-- Navbar -->
-    <nav class="navbar">
-      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-        Home
-      </a>
-      <a routerLink="/hello" routerLinkActive="active">
-        Hello
-      </a>
-      <a routerLink="/example" routerLinkActive="active">
-        Example
-      </a>
-    </nav>
-
-    <!-- Language Toggle Button -->
     <button (click)="changeLanguage()" class="language-toggle-button">
       {{ currentLang === 'es' ? 'Translate to English' : 'Traducir a Español' }}
     </button>
